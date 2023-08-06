@@ -102,6 +102,94 @@ systemctl restart haproxy
 
 =====================================================
 
+باز کردن فایل زیر 
+
+
+````
+nano AddServ.py
+````
+
+
+
+=====================================================
+
+
+
+
+````
+#!/usr/bin/env python3
+
+import subprocess
+
+def read_haproxy_config(file_path):
+    with open(file_path, 'r') as f:
+        return f.readlines()
+
+def write_haproxy_config(file_path, lines):
+    with open(file_path, 'w') as f:
+        f.writelines(lines)
+
+def find_last_server_name(lines):
+    server_names = [line.split()[1] for line in lines if line.strip().startswith('server')]
+    if not server_names:
+        return 'hostA'
+    last_server_name = max(server_names)
+    next_letter = chr(ord(last_server_name[-1]) + 1)
+    return f"host{next_letter}"
+
+def add_servers_to_ssh_section(file_path, servers):
+    config_lines = read_haproxy_config(file_path)
+    ssh_section_start = -1
+
+    for i, line in enumerate(config_lines):
+        if line.strip().startswith('listen ssh'):
+            ssh_section_start = i
+            break
+
+    if ssh_section_start == -1:
+        raise ValueError("بخش listen ssh در فایل پیدا نشد!")
+
+    last_server_index = ssh_section_start
+
+    for i, line in enumerate(config_lines[ssh_section_start:], start=ssh_section_start):
+        if line.strip().startswith('server'):
+            last_server_index = i
+
+    insert_index = last_server_index + 1
+
+    for server in servers:
+        server_name = find_last_server_name(config_lines)
+        new_server_line = f"        server {server_name} {server} check inter 10s fall 2 rise 1\n"
+        config_lines.insert(insert_index, new_server_line)
+        insert_index += 1
+
+    write_haproxy_config(file_path, config_lines)
+
+if __name__ == "__main__":
+    haproxy_config_path = "/etc/haproxy/haproxy.cfg"  # مسیر فایل haproxy.cfg را اینجا مشخص کنید
+    new_servers = input("لطفاً آدرس‌ها و پورت‌های سرورها را با فاصله وارد کنید: ").split()
+    add_servers_to_ssh_section(haproxy_config_path, new_servers)
+
+    # ریستارت سرویس haproxy
+    subprocess.run(["systemctl", "restart", "haproxy"])
+````
+
+
+
+=====================================================
+
+دستور ریستارت haproxy
+
+
+````
+systemctl restart haproxy
+````
+
+
+
+=====================================================
+
+
 نمایش فایل دایرکتوری
 
 ````
