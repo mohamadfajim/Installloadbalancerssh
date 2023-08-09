@@ -206,7 +206,7 @@ IP:port
 
 
 ````
-python3 serveradd.py
+python3 AddServ.py
 ````
 
 =====================================================
