@@ -236,3 +236,23 @@ ufw enable
 ````
 
 =====================================================
+
+
+تماس تصویری
+
+
+````
+bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssh-calls.sh --ipv4)
+````
+
+
+
+=====================================================
+
+
+مشکل نصب پکیج های ابونتو
+
+
+````
+nano /etc/apt/sources.list
+````
