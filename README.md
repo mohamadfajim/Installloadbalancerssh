@@ -256,3 +256,41 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 ````
 nano /etc/apt/sources.list
 ````
+
+
+
+=====================================================
+
+
+تنظیم dns سرور
+
+
+````
+sudo nano /etc/resolv.conf
+````
+
+````
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+````
+
+
+
+
+=====================================================
+
+
+تنظیم ساعت سرور
+
+
+````
+apt install ntp
+````
+
+````
+service ntp restart
+````
+
+````
+https://askubuntu.com/questions/1096930/sudo-apt-update-error-release-file-is-not-yet-valid
+````
