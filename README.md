@@ -292,6 +292,10 @@ service ntp restart
 ````
 
 ````
+sudo hwclock --hctosys 
+````
+
+````
 https://askubuntu.com/questions/1096930/sudo-apt-update-error-release-file-is-not-yet-valid
 ````
 
