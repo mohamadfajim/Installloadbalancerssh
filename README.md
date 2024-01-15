@@ -294,3 +294,8 @@ service ntp restart
 ````
 https://askubuntu.com/questions/1096930/sudo-apt-update-error-release-file-is-not-yet-valid
 ````
+
+
+````
+dpkg-reconfigure tzdata
+````
