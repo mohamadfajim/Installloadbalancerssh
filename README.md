@@ -303,3 +303,11 @@ https://askubuntu.com/questions/1096930/sudo-apt-update-error-release-file-is-no
 ````
 dpkg-reconfigure tzdata
 ````
+
+
+
+چک کردن مسیر دیتاسنتر 
+
+````
+https://bgp.tools/prefix/
+````
