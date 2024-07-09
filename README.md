@@ -311,3 +311,12 @@ dpkg-reconfigure tzdata
 ````
 https://bgp.tools/prefix/
 ````
+
+
+
+
+
+ساخت mtproxy تلگرام
+````
+https://www.datisnetwork.com/run-mtproto.html
+````
